@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login view should render correctly 1`] = `
+<div class="login">
+  <h1>This is login page</h1>
+  <form>
+    <div><label>
+        username:
+        <input name="username"></label></div>
+    <div><label>
+        password:
+        <input name="password" type="password"></label></div> <button type="submit">submit</button>
+  </form>
+</div>
+`;
