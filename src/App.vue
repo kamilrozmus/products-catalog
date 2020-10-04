@@ -2,15 +2,13 @@
   <v-app class="app">
     <v-main>
       <Header />
-      <div class="content">
-      <HelloWorld/>
-      </div>
+      <ProductList/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import ProductList from './components/ProductList'
 import Header from './components/Header'
 
 
@@ -18,7 +16,7 @@ export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    ProductList,
     Header
   },
 
@@ -32,6 +30,6 @@ export default {
 .app {
   padding: 40px;
   margin: auto;
-  width: 85vw;
+  width: 90vw;
 }
 </style>

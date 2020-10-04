@@ -1,6 +1,6 @@
 <template>
-  <v-row>
-    <h4 class="mt-4">join.tsh.io</h4>
+  <v-row style="padding: 0 40px 0 40px;">
+    <h3 class="mt-4">join.tsh.io</h3>
     <v-col sm="3">
       <v-text-field
         col="2"
