@@ -1,18 +1,37 @@
 <template>
-  <div id="app">
-    <div>
-      <router-link to="/">Products</router-link> |
-      <router-link to="/login">Login</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app class="app">
+    <v-main>
+      <Header />
+      <div class="content">
+      <HelloWorld/>
+      </div>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+<script>
+import HelloWorld from './components/HelloWorld'
+import Header from './components/Header'
+
+
+export default {
+  name: 'App',
+
+  components: {
+    HelloWorld,
+    Header
+  },
+
+  data: () => ({
+    //
+  }),
+
+}
+</script>
+<style scoped>
+.app {
+  padding: 40px;
+  margin: auto;
+  width: 85vw;
 }
 </style>

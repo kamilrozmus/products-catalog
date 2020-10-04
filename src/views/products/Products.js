@@ -6,4 +6,5 @@ export default {
       { id: 2, name: "Product 2" },
     ],
   }),
+  
 };
