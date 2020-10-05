@@ -1,6 +1,7 @@
 <template>
   <v-app class="app">
     <v-main>
+      <Spinner />
       <Header />
       <ProductList/>
     </v-main>
@@ -10,20 +11,15 @@
 <script>
 import ProductList from './components/ProductList'
 import Header from './components/Header'
-
+import Spinner from './common/spinner'
 
 export default {
   name: 'App',
-
   components: {
     ProductList,
-    Header
-  },
-
-  data: () => ({
-    //
-  }),
-
+    Header,
+    Spinner
+  }
 }
 </script>
 <style scoped>

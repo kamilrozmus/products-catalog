@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '@/store'
 
 const apiClient = axios.create({
   baseURL: 'https://join-tsh-api-staging.herokuapp.com',
@@ -9,12 +10,32 @@ const apiClient = axios.create({
   }
 })
 
+apiClient.interceptors.request.use(
+  (config) => {
+    store.commit('requests/setApiRequest')
+    return config
+  },
+  error => Promise.reject(error)
+)
+
+apiClient.interceptors.response.use(
+  (res) => {
+    store.commit('requests/setFinishedRequest')
+    return res;
+  },
+  (error) => {
+    store.commit('requests/setFinishedRequest')
+
+    return Promise.reject(error);
+  }
+)
+
 export default {
   getProducts() {
     return apiClient.get('/product')
   },
   // getFilteredProducts() {
-  //   .get("https://swapi.dev/api/people/", {
+  //   .get("", {
   //         params: {
   //           search: this.keyword
   //         }

@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from 'axios'
+import axios from 'axios';
 
-
+import requests from '@/store/request/module'
 import productService from './service'
 
 Vue.use(Vuex);
@@ -22,7 +22,7 @@ export default new Vuex.Store({
     },
     SET_FILTERED_PRODUCTS(state, items) {
       state.filteredProducts = items
-    },
+    }
   },
   actions: {
     async fetchProducts({ commit }) {
@@ -48,5 +48,7 @@ export default new Vuex.Store({
       })
     }
   },
-  modules: {},
+  modules: {
+    requests
+  },
 });
