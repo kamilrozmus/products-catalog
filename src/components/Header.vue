@@ -10,8 +10,10 @@
         outlined
         dense
         class="mx-4"
+        @keyup.exact="getFilteredResult($event)"
       />
     </v-col>
+
     <v-checkbox
       label="Active"
       class="mr-4"
@@ -20,7 +22,6 @@
     <v-checkbox
       label="Promo"
     />
-
     <v-row class="avatar">
       <v-menu offset-y>
         <template v-slot:activator="{ on: menu, attrs }">
@@ -62,18 +63,14 @@ export default {
   name: 'Header',
   data () {
     return {
-      dropdownItems: [{ title: 'Log out', name: 'logout' } ],
+      dropdownItems: [
+        { title: 'Log out', name: 'logout' }
+      ],
       searchName: ""
     }
   },
   computed: {
     ...mapGetters(['getFilteredProducts'])
-  },
-   watch: {
-    searchName() {
-      if (!this.searchName) return;
-      this.fetchFilteredProducts(String(this.searchName))
-    }
   },
   methods: {
     onItemClick (itemName) {
@@ -81,6 +78,9 @@ export default {
         this.$router.push({ path: '/login'})
       }
     },
+    getFilteredResult: debounce(function() {
+      this.fetchFilteredProducts(this.searchName)
+    }, 1000),
     ...mapActions(['fetchFilteredProducts'])
   },
   created() {
@@ -88,6 +88,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .avatar {
   display: flex;

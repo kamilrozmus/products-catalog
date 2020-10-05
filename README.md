@@ -1,15 +1,3 @@
-# vue-2-starter-packs
-
-## Project setup
-
-```
-mkdir new-project
-cd new-project/
-git clone git@github.com:TheSoftwareHouse/vue-2-starter-pack.git .
-rm -r .git
-npm install
-```
-
 ### Compiles and hot-reloads for development
 
 ```
@@ -39,7 +27,3 @@ npm run coverage
 ```
 npm run test:e2e
 ```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).

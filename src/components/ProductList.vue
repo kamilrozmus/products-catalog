@@ -44,10 +44,10 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['fetchProducts'])
+    ...mapActions(['fetchFilteredProducts'])
   },
   created() {
-    this.fetchProducts()
+    this.fetchFilteredProducts()
   }
 }
 </script>

@@ -19,9 +19,9 @@ apiClient.interceptors.request.use(
 )
 
 apiClient.interceptors.response.use(
-  (res) => {
+  (response) => {
     store.commit('requests/setFinishedRequest')
-    return res;
+    return response;
   },
   (error) => {
     store.commit('requests/setFinishedRequest')
@@ -31,14 +31,11 @@ apiClient.interceptors.response.use(
 )
 
 export default {
-  getProducts() {
-    return apiClient.get('/product')
-  },
-  // getFilteredProducts() {
-  //   .get("", {
-  //         params: {
-  //           search: this.keyword
-  //         }
-  //       })
-  // }
+  async getFilteredProducts(name) {
+    return await apiClient.get('/product/', {
+      params: {
+        search: String(name)
+      }
+    })
+  }
 }

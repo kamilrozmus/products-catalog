@@ -9,10 +9,9 @@ const getters = {
 const mutations = {
   setApiRequest(state) {
    state.apiRequest++
-},
-
-setFinishedRequest(state) {
-  state.apiRequest--
+  },
+  setFinishedRequest(state) {
+    state.apiRequest--
   }
 }
 
