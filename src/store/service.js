@@ -12,5 +12,12 @@ const apiClient = axios.create({
 export default {
   getProducts() {
     return apiClient.get('/product')
-  }
+  },
+  // getFilteredProducts() {
+  //   .get("https://swapi.dev/api/people/", {
+  //         params: {
+  //           search: this.keyword
+  //         }
+  //       })
+  // }
 }

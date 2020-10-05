@@ -3,6 +3,7 @@
     <h3 class="mt-4">join.tsh.io</h3>
     <v-col sm="3">
       <v-text-field
+        v-model="searchName"
         col="2"
         append-icon="search"
         placeholder="search"
@@ -11,7 +12,6 @@
         class="mx-4"
       />
     </v-col>
-
     <v-checkbox
       label="Active"
       class="mr-4"
@@ -55,11 +55,24 @@
   </v-row>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
+import debounce from 'lodash.debounce'
+
 export default {
   name: 'Header',
   data () {
     return {
-      dropdownItems: [{ title: 'Log out', name: 'logout' } ]
+      dropdownItems: [{ title: 'Log out', name: 'logout' } ],
+      searchName: ""
+    }
+  },
+  computed: {
+    ...mapGetters(['getFilteredProducts'])
+  },
+   watch: {
+    searchName() {
+      if (!this.searchName) return;
+      this.fetchFilteredProducts(String(this.searchName))
     }
   },
   methods: {
@@ -67,7 +80,11 @@ export default {
       if (itemName === 'logout') {
         this.$router.push({ path: '/login'})
       }
-    }
+    },
+    ...mapActions(['fetchFilteredProducts'])
+  },
+  created() {
+    this.fetchFilteredProducts(String(this.searchName))
   }
 }
 </script>

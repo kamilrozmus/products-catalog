@@ -40,7 +40,7 @@ export default {
   name: 'ProductList',
   computed: {
     ...mapGetters({
-      products: 'getProducts'
+      products: 'getFilteredProducts'
     })
   },
   methods: {
