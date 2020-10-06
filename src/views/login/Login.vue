@@ -1,22 +1,119 @@
 <template>
-  <div class="login">
-    <h1>This is login page</h1>
-    <form @submit.prevent="handleSubmit">
-      <div>
-        <label>
-          username:
-          <input name="username" />
-        </label>
-      </div>
-      <div>
-        <label>
-          password:
-          <input name="password" type="password" />
-        </label>
-      </div>
-      <button type="submit">submit</button>
-    </form>
+  <div class="container d-flex">
+    <div class="login-img">
+      <img
+        src="@/assets/login-image.png"
+        alt="login-image"
+      >
+    </div>
+    <div class="login-form">
+      <form @submit.prevent="handleSubmit">
+      <h3 class="title">join.tsh.io</h3>
+
+        <div>
+          <div class="header">Login</div>
+          <span class="tip">Username</span>
+          <v-text-field
+            outlined
+            dense
+            placeholder="Enter username"
+            class="inputs"
+          ></v-text-field>
+        </div>
+        <div>
+          <span class="tip">Password</span>
+          <v-text-field
+            outlined
+            dense
+            placeholder="Enter password"
+            class="inputs"
+          ></v-text-field>
+        </div>
+        <button
+          class="button active"
+          type="submit"
+          @click="$router.push({ name: 'Products' })"
+        >Log in
+        </button>
+      <button class="forgot-psw-btn">Forgot password?</button>
+
+      </form>
+    </div>
   </div>
 </template>
 
-<script src="./Login.js"></script>
+<script>
+</script>
+<style lang="scss" scoped>
+.button {
+  color: white;
+  border-radius: 4px;
+  width: 100%;
+  height: 45px;
+  &.active {
+    background-color: #4460F7;
+  }&:hover {
+    background-color: #2140E8;
+  }
+}
+.tip {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #1A1B1D;
+}
+.forgot-psw-btn {
+  color: #9194A5;
+  text-decoration-line: underline;
+}
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 0;
+}
+.header {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 40px;
+  color: #1A1B1D;
+}
+.inputs {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #1A1B1D;
+  width: 35vw;
+  height: auto;
+}
+.title {
+  position: absolute;
+  top: 0;
+}
+
+@media screen and (min-width: 250px) and (max-width: 850px) {
+  .header {
+    margin-bottom: 10%;
+    margin-top: 30%;
+  }
+  .login-img {
+    display: none;
+  }
+
+  .login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  }
+  .inputs {
+    width: 85vw;
+    height: auto;
+  }
+}
+</style>

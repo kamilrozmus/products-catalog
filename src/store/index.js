@@ -11,7 +11,9 @@ export default new Vuex.Store({
     filteredProducts: []
   },
   getters: {
-    getFilteredProducts: state => state.filteredProducts
+    getFilteredProducts: state => state.filteredProducts,
+    getActiveProducts: state => state.filteredProducts.filter(data => data.active === true),
+    getPromoProducts: state => state.filteredProducts.filter(data => data.promo === true)
   },
   mutations: {
     SET_FILTERED_PRODUCTS(state, items) {

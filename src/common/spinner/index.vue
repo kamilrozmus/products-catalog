@@ -4,6 +4,7 @@
     :can-cancel="true"
     :is-full-page="true"
     :z-index="999"
+    color="#4460F7"
   />
 </template>
 

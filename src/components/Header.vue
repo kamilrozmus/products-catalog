@@ -1,6 +1,6 @@
 <template>
-  <v-row style="padding: 0 40px 0 40px;">
-    <h3 class="mt-4">join.tsh.io</h3>
+  <v-row>
+    <h3 class="mt-4 title">join.tsh.io</h3>
     <v-col sm="3">
       <v-text-field
         v-model="searchName"
@@ -9,19 +9,23 @@
         placeholder="search"
         outlined
         dense
-        class="mx-4"
         @keyup.exact="getFilteredResult($event)"
+        class="search-bar"
       />
     </v-col>
-
-    <v-checkbox
-      label="Active"
-      class="mr-4"
-    />
-
-    <v-checkbox
-      label="Promo"
-    />
+    <div class="d-flex">
+      <v-checkbox
+        v-model="active"
+        label="Active"
+        class="mr-4 ml-2"
+        color="#4460F7"
+      />
+      <v-checkbox
+        v-model="promo"
+        label="Promo"
+        color="#4460F7"
+      />
+    </div>
     <v-row class="avatar">
       <v-menu offset-y>
         <template v-slot:activator="{ on: menu, attrs }">
@@ -41,15 +45,15 @@
           </v-btn>
         </template>
         <v-list>
-          <v-list-tile
+          <v-list-item
             v-for="(item, index) in dropdownItems"
             :key="index"
-            @click="onItemClick(item.name)"
+            :to="item.route"
             class="mx-4"
             style="cursor: pointer;"
           >
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile>
+          <v-list-item-title v-text="item.title"></v-list-item-title>
+          </v-list-item>
         </v-list>
       </v-menu>
     </v-row>
@@ -64,9 +68,11 @@ export default {
   data () {
     return {
       dropdownItems: [
-        { title: 'Log out', name: 'logout' }
+        { title: 'Log out', name: 'logout', route: '/login' }
       ],
-      searchName: ""
+      searchName: "",
+      active: false,
+      promo: false
     }
   },
   computed: {
@@ -75,16 +81,13 @@ export default {
   methods: {
     onItemClick (itemName) {
       if (itemName === 'logout') {
-        this.$router.push({ path: '/login'})
+        this.$router.push({ name: 'Login' })
       }
     },
     getFilteredResult: debounce(function() {
       this.fetchFilteredProducts(this.searchName)
     }, 1000),
     ...mapActions(['fetchFilteredProducts'])
-  },
-  created() {
-    this.fetchFilteredProducts(String(this.searchName))
   }
 }
 </script>
@@ -93,5 +96,18 @@ export default {
 .avatar {
   display: flex;
   justify-content: flex-end;
+}
+@media screen and (min-width: 250px) and (max-width: 850px) {
+  .title {
+    margin-left: 10px;
+  }
+  .search-bar {
+    width: 85vw;
+    height: auto;
+  }
+  .avatar {
+    position: absolute;
+    right: 10px;
+  }
 }
 </style>
