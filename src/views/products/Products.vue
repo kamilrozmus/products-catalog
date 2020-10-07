@@ -2,9 +2,9 @@
   <div>
     <PaginatedProducts
       :data="products"
-      :total-pages="Math.ceil(products.length / 4)"
+      :total-pages="Math.ceil(products.length / itemsPerPage)"
       :total="products.length"
-      :per-page="24"
+      :per-page="itemsPerPage"
       :current-page="currentPage"
       @pagechanged="onPageChange"
     />
@@ -17,21 +17,25 @@ import PaginatedProducts from '@/components/PaginatedProducts.vue'
 export default {
   name: 'Products',
   components: { PaginatedProducts },
-  data(){
+  data() {
     return {
-			currentPage: 1
+      currentPage: 1,
+      itemsPerPage: 12
     }
   },
+
   methods: {
-		...mapActions(['fetchFilteredProducts']),
     onPageChange(page) {
-      this.currentPage = page;
+      this.currentPage = page
 		},
+		...mapActions(['fetchFilteredProducts']),
   },
+
   computed: {
       ...mapGetters({
       products: 'getFilteredProducts'})
   },
+
   created() {
     this.fetchFilteredProducts('')
   }

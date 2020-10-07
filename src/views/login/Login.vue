@@ -9,7 +9,6 @@
     <div class="login-form">
       <form @submit.prevent="handleSubmit">
       <h3 class="title">join.tsh.io</h3>
-
         <div>
           <div class="header">Login</div>
           <span class="tip">Username</span>
@@ -33,40 +32,49 @@
           class="button active"
           type="submit"
           @click="$router.push({ name: 'Products' })"
-        >Log in
+        >
+          Log in
         </button>
-      <button class="forgot-psw-btn">Forgot password?</button>
-
+        <button class="forgot-psw-btn">Forgot password?</button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+export default {
+  name: 'Login'
+}
 </script>
 <style lang="scss" scoped>
+@import './src/scss/variables.scss';
+
 .button {
-  color: white;
+  color: $white;
   border-radius: 4px;
   width: 100%;
   height: 45px;
   &.active {
-    background-color: #4460F7;
-  }&:hover {
-    background-color: #2140E8;
+    background-color: $purple;
+  }
+  &:hover {
+    background-color: $purple-hover;
   }
 }
+
 .tip {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
-  color: #1A1B1D;
+  color: $black;
 }
+
 .forgot-psw-btn {
-  color: #9194A5;
+  color: $grey;
   text-decoration-line: underline;
 }
+
 .login-form {
   display: flex;
   justify-content: center;
@@ -74,22 +82,25 @@
   margin: auto;
   padding: 0;
 }
+
 .header {
   font-style: normal;
   font-weight: 600;
   font-size: 30px;
   line-height: 40px;
-  color: #1A1B1D;
+  color: $black;
 }
+
 .inputs {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
-  color: #1A1B1D;
+  color: $black;
   width: 35vw;
   height: auto;
 }
+
 .title {
   position: absolute;
   top: 0;
@@ -100,6 +111,7 @@
     margin-bottom: 10%;
     margin-top: 30%;
   }
+
   .login-img {
     display: none;
   }
@@ -111,6 +123,7 @@
     width: 100%;
     height: auto;
   }
+
   .inputs {
     width: 85vw;
     height: auto;

@@ -20,11 +20,13 @@
         label="Active"
         class="mr-4 ml-2"
         color="#4460F7"
+        @click="handleActiveFilter(active)"
       />
       <v-checkbox
         v-model="promo"
         label="Promo"
         color="#4460F7"
+        @click="handlePromoFilter(promo)"
       />
     </div>
     <v-row class="avatar">
@@ -71,16 +73,18 @@ export default {
       dropdownItems: [
         { title: 'Log out', name: 'logout', route: '/login' }
       ],
-      searchName: "",
+      searchName: '',
       active: false,
       promo: false
     }
   },
+
   computed: {
     ...mapGetters(['getFilteredProducts'])
   },
+
   methods: {
-    onItemClick (itemName) {
+    onItemClick(itemName) {
       if (itemName === 'logout') {
         this.$router.push({ name: 'Login' })
       }
@@ -88,12 +92,20 @@ export default {
     getFilteredResult: debounce(function() {
       this.fetchFilteredProducts(this.searchName)
     }, 1000),
-    ...mapActions(['fetchFilteredProducts'])
+    handleActiveFilter(value) {
+      this.setActiveFilter(value)
+    },
+    handlePromoFilter(value) {
+      this.setPromoFilter(value)
+    },
+    ...mapActions(['fetchFilteredProducts', 'setActiveFilter', 'setPromoFilter'])
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import './src/scss/variables.scss';
+
 .avatar {
   display: flex;
   justify-content: flex-end;
@@ -101,11 +113,14 @@ export default {
 @media screen and (min-width: 250px) and (max-width: 850px) {
   .title {
     margin-left: 10px;
+    color: $black;
   }
+
   .search-bar {
     width: 85vw;
     height: auto;
   }
+
   .avatar {
     position: absolute;
     right: 10px;
