@@ -9,6 +9,7 @@
         placeholder="search"
         outlined
         dense
+        color="#4460F7"
         @keyup.exact="getFilteredResult($event)"
         class="search-bar"
       />

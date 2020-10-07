@@ -24,7 +24,8 @@ export default new Vuex.Store({
     fetchFilteredProducts({ commit }, search) {
       productService.getFilteredProducts(search)
       .then(response => {
-        commit('SET_FILTERED_PRODUCTS', response.data.items)
+        let reversed = response.data.items.reverse()
+        commit('SET_FILTERED_PRODUCTS', reversed)
       })
       .catch(error => {
         console.log('Error has occured' + error)

@@ -10,11 +10,12 @@
 <script>
 import Spinner from './common/spinner'
 
+
 export default {
   name: 'App',
   components: {
     Spinner
-  }
+  },
 }
 </script>
 <style scoped>
