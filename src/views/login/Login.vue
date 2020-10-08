@@ -47,15 +47,15 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import './src/scss/variables.scss';
+@import '@/styles/variables.scss';
 
 .button {
-  color: $white;
+  color: $white-default;
   border-radius: 4px;
   width: 100%;
   height: 45px;
   &.active {
-    background-color: $purple;
+    background-color: $purple-primary;
   }
   &:hover {
     background-color: $purple-hover;
@@ -67,11 +67,11 @@ export default {
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
-  color: $black;
+  color: $black-default;
 }
 
 .forgot-psw-btn {
-  color: $grey;
+  color: $grey-custom;
   text-decoration-line: underline;
 }
 
@@ -88,7 +88,7 @@ export default {
   font-weight: 600;
   font-size: 30px;
   line-height: 40px;
-  color: $black;
+  color: $black-default;
 }
 
 .inputs {
@@ -96,7 +96,7 @@ export default {
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
-  color: $black;
+  color: $black-default;
   width: 35vw;
   height: auto;
 }

@@ -104,7 +104,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './src/scss/variables.scss';
+@import '@/styles/variables.scss';
 
 .avatar {
   display: flex;
@@ -113,7 +113,7 @@ export default {
 @media screen and (min-width: 250px) and (max-width: 850px) {
   .title {
     margin-left: 10px;
-    color: $black;
+    color: $black-default;
   }
 
   .search-bar {

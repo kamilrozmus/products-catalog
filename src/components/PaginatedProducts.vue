@@ -14,7 +14,7 @@
           >
         </div>
         <div class="top-line">Ooops... It's empty here</div>
-        <div class="bottom-line">There's no products on the list</div>
+        <div class="bottom-line mt-2">There's no products on the list</div>
       </div>
       <div
         v-for="item in preparedData"
@@ -28,7 +28,7 @@
             class="img-child"
           >
           <h4>{{ item.name }}</h4>
-          <div class="description">{{ item.description }}</div>
+          <div class="description-overflow my-3">{{ item.description }}</div>
           <v-rating
             v-model="item.rating"
             background-color="#B1B5C9"
@@ -36,15 +36,14 @@
             small
           ></v-rating>
           <div v-if="item.active === true">
-            <button
-              type="button"
-              class="button-item active"
-            >
-              Show details
-            </button>
+            <ItemDialog :item="item" />
           </div>
           <div v-else>
-            <button type="button" class="button-item disabled">
+            <button
+              type="button"
+              class="button-item disabled"
+              style="color: white;"
+            >
               Unavailable
             </button>
           </div>
@@ -52,7 +51,7 @@
       </div>
       <ul
         v-if="data.length > 5 || currentPage > 1"
-        class="pagination"
+        class="pagination mt-3"
       >
         <li class="pagination-item">
           <button
@@ -116,10 +115,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import Header from '@/components/Header'
+import ItemDialog from '@/components/ItemDialog'
 
 export default {
   name: 'PaginatedProducts',
-  components: { Header },
+  components: { Header, ItemDialog },
   props: {
     data: {
       type: Array,
@@ -145,6 +145,12 @@ export default {
     currentPage: {
       type: Number,
       required: true
+    }
+  },
+
+  data() {
+    return {
+      openDialog: false
     }
   },
 
@@ -212,6 +218,9 @@ export default {
 
     onPageChange(page) {
       this.currentPage = page
+    },
+    onOpenDialog(value) {
+      this.openDialog = value
     }
   },
 
@@ -222,7 +231,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './src/scss/variables.scss';
+@import '@/styles/variables.scss';
 
 .content {
   display: flex;
@@ -242,34 +251,30 @@ export default {
   border-radius: 10px;
 }
 
-.description {
-  text-align: justify;
-  margin-right: 15px;
-  color: $grey;
-}
-
-.button-item {
-  color: white;
-  border-radius: 4px;
-  width: 100%;
-  height: 45px;
-  &.active {
-    background-color: $purple;
-  }
-  &:hover {
-    background-color: $purple-hover;
-  }
-  &.disabled {
-    background-color: $grey;
-    cursor: default;
-    pointer-events: none;
-  }
-}
-
 .empty-list {
+  margin-top: 50px;
   text-align: center;
+  .top-line {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 16px;
+    color: $black-default;
+  }
+  .bottom-line {
+    font-style: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: $grey-custom;
+  }
 }
 
+.description-overflow {
+  white-space: nowrap;
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .pagination {
   display: flex;
   justify-content: center;
@@ -283,7 +288,7 @@ export default {
     margin: 0;
     border: none;
     background: none;
-    color: $black;
+    color: $black-default;
     font-weight: 600;
     padding: .25rem .5rem;
     font-size: 16px;
@@ -291,7 +296,7 @@ export default {
   }
   &:hover {
     cursor: pointer;
-    color: $purple;
+    color: $purple-primary;
   }
   &.active-page {
     font-weight: bold;
